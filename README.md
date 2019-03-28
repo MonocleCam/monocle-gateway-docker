@@ -19,7 +19,9 @@ More information about the [**Monocle Gateway**](https://monoclecam.com/monocle-
 This is the **official** Docker image for the [**Monocle Gateway**](https://monoclecam.com/monocle-gateway) service.
 
 ### Prerequisites
+
 T.B.D
+
 
 ### Networking Considerations
 
@@ -31,7 +33,7 @@ This project provides examples of running the **Monocle Gateway** container usin
 
 It is important to understand the networking requirements of **Monocle Gateway** and to make the appopriate decision on which networking mode will work for your environment.  On startup the **Monocle Gateway** service attempts to auto-detect the server's IP address.  It then sends this private IP address to the **Monocle** cloud platform to create a unique DNS record for this **Monocle Gateway** instance.  It is important that the IP address that gets detected and registered is the correct local/private IP address on your network that Alexa devices can access.  Additionally, the **Monocle Gateway** service listens on TCP port 443 for secure communications with the Alexa devices.  Unfortunately only TCP port 443 can be used due to fixed requirements defined by Amazon for the Alexa Camera Controller interfaces.  The **Monocle Gateway** service must also be able to communicate out from the container to the vairous IP cameras on your private/local network.  Finally, the **Monocle Gateway** service supports an internal RTSP proxy server that can dynamically assign and listen on various UDP inbound ports for IP camera streams for certain stream configurtations.
 
-<a href="examples">&gt;&gt; More details on the various networking modes for the Monocle Gateway Docker container.</a>
+<a href="https://github.com/MonocleCam/monocle-gateway-docker/tree/master/examples">&gt;&gt; More details on the various networking modes for the Monocle Gateway Docker container.</a>
 
 
 ### Creating a new container instance using `docker-compose`
