@@ -54,7 +54,6 @@ docker network create             \
    -d macvlan                     \
    --subnet=$NETWORK_SUBNET       \
    --gateway=$NETWORK_GATEWAY     \
-   --ip-range=$NETWORK_ADDRESS/32 \
    -o parent=$NETWORK_INTERFACE   \
    monocle-gateway-network
 
@@ -67,6 +66,7 @@ docker run                           \
   --volume /etc/monocle:/etc/monocle \
   --name=monocle-gateway             \
   --network=monocle-gateway-network  \
+  --ip=$NETWORK_ADDRESS              \
   monoclecam/monocle-gateway
 
 echo ">> NEW MONOCLE GATEWAY CONTAINER IS RUNNING"

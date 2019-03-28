@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  monocle-gateway:
+    container_name: monocle-gateway
+    hostname: monocle-gateway
+    image: monoclecam/monocle-gateway
+    restart: always
+    ports:
+      - "443:443/tcp"
+      - "62000-62100:62000-62100/udp"
+    volumes:
+      - /etc/monocle:/etc/monocle
+    network_mode: bridge

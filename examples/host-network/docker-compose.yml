@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  monocle-gateway:
+    container_name: monocle-gateway
+    hostname: monocle-gateway
+    image: monoclecam/monocle-gateway
+    restart: always
+    volumes:
+      - /etc/monocle:/etc/monocle
+    network_mode: host

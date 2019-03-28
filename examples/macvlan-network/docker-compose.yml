@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+
+  monocle-gateway:
+    container_name: monocle-gateway
+    hostname: monocle-gateway
+    image: monoclecam/monocle-gateway
+    restart: always
+    volumes:
+      - /etc/monocle:/etc/monocle
+    networks:
+      monocle-gateway-network:
+        ipv4_address: 10.1.1.199
+       
+networks:
+
+  monocle-gateway-network:
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: 10.1.0.0/16
+          gateway: 10.1.1.1
