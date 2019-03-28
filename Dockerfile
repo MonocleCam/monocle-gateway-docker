@@ -27,20 +27,18 @@ WORKDIR /root
 # ---------------------------------------
 # Monocle Gateway image arguments.
 # ---------------------------------------
-ARG BUILD_DATE
-ARG BUILD_VERSION
+ARG BUILD_VERSION=v0.0.4
 
 # ---------------------------------------
 # Monocle Gateway image labels.
 # ---------------------------------------
 LABEL name="Monocle Gateway"
 LABEL url="https://monoclecam.com"
-LABEL image="monoclecam/monocle-gateway:$BUILD_VERSION"
+LABEL image="monoclecam/monocle-gateway"
 LABEL maintainer="support@monoclecam.com"
 LABEL description="This image provides a Docker container for the Monocle Gateway service based on Alpine Linux."
 LABEL vendor="shadeBlue, LLC."
 LABEL version=$BUILD_VERSION
-LABEL created=$BUILD_DATE
 
 # ---------------------------------------
 # Create Monocle Gateway configuration 
@@ -66,7 +64,7 @@ RUN apk update &&      \
 # Download versioned Monocle Gateway
 # build archive file
 # ---------------------------------------
-RUN wget -c https://files.monoclecam.com/monocle-gateway/release/linux/monocle-gateway-alpine-x64-v0.0.4.tar.gz -O monocle-gateway.tar.gz
+RUN wget -c https://files.monoclecam.com/monocle-gateway/release/linux/monocle-gateway-alpine-x64-$BUILD_VERSION.tar.gz -O monocle-gateway.tar.gz
 
 # ---------------------------------------
 # Extract Moncole Gateway related 
@@ -95,7 +93,7 @@ EXPOSE 443/tcp
 # (used for the @proxy method to allow 
 # IP cameras to transmit streams via UDP)
 # ---------------------------------------
-EXPOSE 62000-65535/udp
+EXPOSE 62000-62100/udp
 
 # ---------------------------------------
 # Launch the Monocle Gateway executable 
