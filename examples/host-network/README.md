@@ -5,6 +5,16 @@
 The following examples are for using the HOST networking mode/driver for the **Monocle Gateway** Docker container.  
 For other networking modes, please see: [Monocle Gateway Container Networking](../)
 
+---
+
+### Overview
+
+As long as port 443 is not already in use on your system by another service or application, host networking is the preferred mode for a Monocle Gateway container.   Host mode simply allows the container to share the network interface of the container host system.  Thus it will use the same IP address as the host and listen to TCP/UDP ports directly on the host network interface.  If TCP port 443 is already in use or if using host mode is not acceptable for your environment, then please see the MACVLAN networking section of this page.  
+
+**Note:**  Host mode will not work with a Monocle Gateway container if port 443 is already consumed or in use by another application on the container host.   
+
+> Additional information about this networking mode can be found here:
+https://docs.docker.com/network/host/
 
 ---
 
