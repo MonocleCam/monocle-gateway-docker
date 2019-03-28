@@ -22,6 +22,12 @@ echo "------------------------------------------------------------"
 echo " MONOCLE GATEWAY :: START DOCKER CONTAINER"
 echo "------------------------------------------------------------"
 
+# CUSTOM NETWORK SETTINGS (for macvlan)
+NETWORK_INTERFACE=eth0
+NETWORK_SUBNET=10.1.0.0/16
+NETWORK_GATEWAY=10.1.1.1
+NETWORK_ADDRESS=10.1.1.199
+
 # REMOVE EXISTING MONOCLE GATEWAY CONTAINER
 echo ">> CHECKING FOR EXISTING MONOCLE GATEWAY CONTAINER"
 if docker ps -q --filter "name=monocle-gateway" | grep -q . ;then
@@ -32,16 +38,35 @@ else
   echo ">> NO EXISTING MONOCLE GATEWAY CONTAINER FOUND"
 fi
 
+# REMOVE EXISTING MONOCLE GATEWAY MACVLAN NETWORK
+echo ">> CHECKING FOR EXISTING MONOCLE GATEWAY NETWORK"
+if docker network ls -q --filter "name=monocle-gateway" | grep -q . ;then
+  echo ">> FOUND EXISTING MONOCLE GATEWAY NETWORK"
+  echo ">> REMOVING EXISTING MONOCLE GATEWAY NETWORK"
+  docker network rm monocle-gateway-network
+else
+  echo ">> NO EXISTING MONOCLE GATEWAY NETWORK FOUND"
+fi
+
+# CREATE NET MACVLAN NETWORK FOR MONOCLE GATEWAY
+echo ">> CREATING NEW MONOCLE GATEWAY NETWORK (macvlan)"
+docker network create             \
+   -d macvlan                     \
+   --subnet=$NETWORK_SUBNET       \
+   --gateway=$NETWORK_GATEWAY     \
+   --ip-range=$NETWORK_ADDRESS/32 \
+   -o parent=$NETWORK_INTERFACE   \
+   monocle-gateway-network
+
 # CREATE AND RUN NEW MONOCLE GATEWAY CONTAINER
 echo ">> STARTING NEW MONOCLE GATEWAY CONTAINER"
 docker run                           \
   -it                                \
-  -d                                 \
-  -p 443:443/tcp                     \
-  -p 62000-62100:62000-62100/udp     \
+  --detach                           \
   --restart=always                   \
   --volume /etc/monocle:/etc/monocle \
   --name=monocle-gateway             \
+  --network=monocle-gateway-network  \
   monoclecam/monocle-gateway
 
 echo ">> NEW MONOCLE GATEWAY CONTAINER IS RUNNING"
