@@ -45,7 +45,7 @@ https://docs.docker.com/network/host/
 
 **Note:**  If unable to use HOST networking mode, this is the best alternative; however, it does require a bit more sophisticated configuration and understanding of the networking layer.
 
-<a href="host-macvlan">Examples using **MACVLAN** mode networking with Monocle Gateway</a>
+<a href="macvlan-network">Examples using **MACVLAN** mode networking with Monocle Gateway</a>
 
 > Additional information about this networking mode can be found here:
 https://docs.docker.com/network/macvlan/
