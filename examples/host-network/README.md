@@ -54,7 +54,7 @@ docker-compose down
 ---
 
 ### Creating a new container instance from the `docker` command line.
-The following command serves as an example of how to launch a [**Monocle Gateway**](https://monoclecam.com/monocle-gateway) service container instance.
+The following command serves as an example of how to launch a [**Monocle Gateway**](https://monoclecam.com/monocle-gateway) service container instance directly from the `docker` command line.
 
 ```
 docker run                           \
