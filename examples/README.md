@@ -20,7 +20,7 @@ This is the default networking mode/driver that most containers use when launche
 
 **Note:**  Bridge mode requires that you include a custom `monocle.properties` file in your `/etc/monocle` configuation directory that overrides the Monocle Gateway's IP address detection logic and specifies the IP address of the container host. 
 
-<a href="bridge-network">Examples using **BRIDGE** mode networking with Monocle Gateway</a>
+<a href="bridge-network">&gt;&gt; Examples using **BRIDGE** mode networking with Monocle Gateway</a>
 
 > Additional information about this networking mode can be found here:
 https://docs.docker.com/network/bridge/
@@ -30,11 +30,11 @@ https://docs.docker.com/network/bridge/
 
 ### Host Networking
 
-As long as port 443 is not already in use on your system by another service or applicafion, host networking is the preferred mode for a Monocle Gateway container.   Host mode simply allows the container to share the network interface of the container host system.  Thus it will use the same IP address as the host and listen to TCP/UDP ports directly on the host network interface.  If TCP port 443 is already in use or if using host mode is not acceptable for your environment, then please see the MACVLAN networking section of this page.  
+As long as port 443 is not already in use on your system by another service or application, host networking is the preferred mode for a Monocle Gateway container.   Host mode simply allows the container to share the network interface of the container host system.  Thus it will use the same IP address as the host and listen to TCP/UDP ports directly on the host network interface.  If TCP port 443 is already in use or if using host mode is not acceptable for your environment, then please see the MACVLAN networking section of this page.  
 
 **Note:**  Host mode will not work with a Monocle Gateway container if port 443 is already consumed or in use by another application on the container host.   
 
-<a href="host-network">Examples using **HOST** mode networking with Monocle Gateway</a>
+<a href="host-network">&gt;&gt; Examples using **HOST** mode networking with Monocle Gateway</a>
 
 > Additional information about this networking mode can be found here:
 https://docs.docker.com/network/host/
@@ -43,11 +43,11 @@ https://docs.docker.com/network/host/
 
 ### MACVLAN Networking
 
+If TCP port 443 is already in use by another application or service on your container host, or if you prefer or need to assign a dedicated/static IP address to the Monocle Gateway container, the MACVLAN networking mode is the best choice. 
+
 **Note:**  If unable to use HOST networking mode, this is the best alternative; however, it does require a bit more sophisticated configuration and understanding of the networking layer.
 
-<a href="macvlan-network">Examples using **MACVLAN** mode networking with Monocle Gateway</a>
+<a href="macvlan-network">&gt;&gt; Examples using **MACVLAN** mode networking with Monocle Gateway</a>
 
 > Additional information about this networking mode can be found here:
 https://docs.docker.com/network/macvlan/
-
-
