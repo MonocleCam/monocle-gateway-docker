@@ -1,0 +1,27 @@
+# Build files
+out
+target
+gen
+build
+dist
+lib
+trash
+
+# Temporary files
+temp
+*.tmp
+
+# IntelliJ files
+.idea
+*.iml
+
+# Vim files
+*.swp
+
+# Mac files
+.DS_Store
+
+# Windows files
+Thumbs.db
+
+
