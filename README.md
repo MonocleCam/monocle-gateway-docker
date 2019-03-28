@@ -12,11 +12,14 @@ More information about the [**Monocle**](https://monoclecam.com) IP camera cloud
 More information about the [**Monocle Gateway**](https://monoclecam.com/monocle-gateway) service can be found here:
 * [https://monoclecam.com/monocle-gateway](https://monoclecam.com/monocle-gateway)
 
+
 ---
 
 # Docker Container
 
 This is the **official** Docker image for the [**Monocle Gateway**](https://monoclecam.com/monocle-gateway) service.
+
+---
 
 ### Prerequisites
 
@@ -27,6 +30,7 @@ access token.  You must save the `monocle.token` file to the aforementioned `/et
 
 See:  http://monoclecam.com/monocle-api-token
 
+---
 
 ### Networking Considerations
 
@@ -38,6 +42,4 @@ This project provides examples of running the **Monocle Gateway** container usin
 
 It is important to understand the networking requirements of **Monocle Gateway** and to make the appropriate decision on which networking mode will work for your environment.  On startup the **Monocle Gateway** service attempts to auto-detect the server's IP address.  It then sends this private IP address to the **Monocle** cloud platform to create a unique DNS record for this **Monocle Gateway** instance.  It is important that the IP address that gets detected and registered is the correct local/private IP address on your network that Alexa devices can access.  Additionally, the **Monocle Gateway** service listens on TCP port 443 for secure communications with the Alexa devices.  Unfortunately only TCP port 443 can be used due to fixed requirements defined by Amazon for the Alexa Camera Controller interfaces.  The **Monocle Gateway** service must also be able to communicate out from the container to the various IP cameras on your private/local network.  Finally, the **Monocle Gateway** service supports an internal RTSP proxy server that can dynamically assign and listen on various UDP inbound ports for IP camera streams for certain stream configurations.
 
-<div style="width: 100%; height: 100px; border: 2px solid silver; valign: center; horizontal-align: center; background-color: green; color: white;">
 <a href="https://github.com/MonocleCam/monocle-gateway-docker/tree/master/examples">&gt;&gt; More details on the various networking modes for the Monocle Gateway Docker container.</a>
-<div>
