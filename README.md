@@ -28,7 +28,7 @@ The following examples assume that you have created a `/etc/monocle` directory o
 Prior to launching a **Monocle Gateway** instance, you should have acquired a `monocle.token` file containing your Monocle API 
 access token.  You must save the `monocle.token` file to the aforementioned `/etc/monocle` directory on your host container.
 
-See:  http://monoclecam.com/monocle-api-token
+See:  http://monoclecam.com/apitoken
 
 ---
 
