@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  monocle-gateway:
+    container_name: monocle-gateway
+    hostname: monocle-gateway
+    image: monoclecam/monocle-gateway
+    restart: always
+    volumes:
+      - /etc/monocle:/etc/monocle
+
+networks:
+  default:
+    external:
+      name: bridge-routed
+    # ipam:
+    #   driver: default
+    #   config:
+    #     - subnet: "172.10.0.0/16"
+    #     - subnet: "2001:db8:1::/64"
