@@ -5,6 +5,7 @@
 This project provides examples of running the **Monocle Gateway** container using the following container networking modes/drivers.
 
 - Bridge networking
+- Bridge networking with static routing
 - Host networking (**PREFERRED**)
 - Macvlan networking
 
@@ -27,11 +28,11 @@ https://docs.docker.com/network/bridge/
 
 ---
 
-### Bridge Networking (Routed)
+### Bridge Networking with Static Routing
  
-This used the default networking mode/driver that most containers use when launched using Docker.  However, we are going to create a new docker network for use with Monocle Gateway, and other containers, that we can route traffic to directly.   This will **NOT** require the container explicitly expose individual TCP/UPD ports from the container to the host's network interface.   Clients comunicate with the docker container directly.
+This uses the default networking mode/driver that most containers use when launched using Docker.  However, this approach will create a new (custom/dedicated) docker network for use with Monocle Gateway (and/or potentially other containers) that we can route traffic to directly.  This will **NOT** require the container explicitly expose individual TCP/UDP ports from the container to the host's network interface.  Clients comunicate with the docker container directly.  
 
-**Note:**  This requires that you add a [static route](https://kb.netgear.com/24226/What-are-static-routes-and-how-do-they-work-with-my-NETGEAR-router) on your network router, where the next-hop is your docker host, and the subnet is the docker network subnet. 
+**Note:**  This method requires that you add a [static route](https://kb.netgear.com/24226/What-are-static-routes-and-how-do-they-work-with-my-NETGEAR-router) on your network router, where the next-hop is your docker host, and the subnet is the docker network subnet. 
 
 #### [How to add a Static Route on Home WiFi Router](https://youtu.be/MXcab7uhrLk?t=84)
  - See your routers guide or documentation for the paticulars on how to setup a static route on your make & model of router.
