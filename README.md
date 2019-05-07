@@ -37,6 +37,7 @@ See:  http://monoclecam.com/apitoken
 This project provides examples of running the **Monocle Gateway** container using the following container [networking modes/drivers](https://github.com/MonocleCam/monocle-gateway-docker/tree/master/examples).
 
 - [Bridge networking](https://github.com/MonocleCam/monocle-gateway-docker/tree/master/examples/bridge-network)
+- [Bridge networking with static routing](https://github.com/MonocleCam/monocle-gateway-docker/tree/master/examples/bridge-routed-network)
 - [Host networking (**PREFERRED**)](https://github.com/MonocleCam/monocle-gateway-docker/tree/master/examples/host-network)
 - [Macvlan networking](https://github.com/MonocleCam/monocle-gateway-docker/tree/master/examples/macvlan-network)
 

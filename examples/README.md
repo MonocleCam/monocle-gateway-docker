@@ -5,6 +5,7 @@
 This project provides examples of running the **Monocle Gateway** container using the following container networking modes/drivers.
 
 - Bridge networking
+- Bridge networking with static routing
 - Host networking (**PREFERRED**)
 - Macvlan networking
 
@@ -25,6 +26,36 @@ This is the default networking mode/driver that most containers use when launche
 > Additional information about this networking mode can be found here:
 https://docs.docker.com/network/bridge/
 
+---
+
+### Bridge Networking with Static Routing
+ 
+This uses the default networking mode/driver that most containers use when launched using Docker.  However, this approach will create a new (custom/dedicated) docker network for use with Monocle Gateway (and/or potentially other containers) that we can route traffic to directly.  This will **NOT** require the container explicitly expose individual TCP/UDP ports from the container to the host's network interface.  Clients comunicate with the docker container directly.  
+
+**Note:**  This method requires that you add a [static route](https://kb.netgear.com/24226/What-are-static-routes-and-how-do-they-work-with-my-NETGEAR-router) on your network router, where the next-hop is your docker host, and the subnet is the docker network subnet. 
+
+#### [How to add a Static Route on Home WiFi Router](https://youtu.be/MXcab7uhrLk?t=84)
+ - See your routers guide or documentation for the paticulars on how to setup a static route on your make & model of router.
+
+#### [How to add a Static Route on a Ubiquiti Edge Router](https://community.ubnt.com/t5/EdgeRouter/static-routing-thru-CLI/td-p/770666)
+
+  - set protocols static route **DOCKER-ROUTABLE-NETWORK** / **SUBNET** next-hop **YOUR-DOCKER-HOST-IP** 
+  - Example IPv4: set protocols static route 172.10.0.0/16 next-hop 192.168.1.20
+  - Example IPv6: set protocols static route 2001:db8:1::/64 next-hop 2600:1600:4820:3456:3666:45fe:ffc3:67ce
+
+```
+configure
+set protocols static route 172.10.0.0/16 next-hop 192.168.1.20
+set protocols static route 2001:db8:1::/64 next-hop 2600:1600:4820:3456:3666:45fe:ffc3:67ce
+commit
+save
+exit
+```
+
+<a href="bridge-routed-network">&gt;&gt; Examples using **BRIDGE-ROUTED** mode networking with Monocle Gateway</a>
+
+> Additional information about this networking mode can be found here:
+https://en.wikipedia.org/wiki/Static_routing
 
 ---
 
