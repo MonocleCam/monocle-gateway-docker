@@ -27,18 +27,29 @@ WORKDIR /root
 # ---------------------------------------
 # Monocle Gateway image arguments.
 # ---------------------------------------
-ARG BUILD_VERSION=v0.0.4
+ARG BUILDVERSION
+ARG TARGETARCH
+ARG BUILDDATE
+ARG BUILDVERSION
+MAINTAINER Robert Savage "support@monoclecam.com"
 
 # ---------------------------------------
 # Monocle Gateway image labels.
 # ---------------------------------------
 LABEL name="Monocle Gateway"
-LABEL url="https://monoclecam.com"
-LABEL image="monoclecam/monocle-gateway"
-LABEL maintainer="support@monoclecam.com"
-LABEL description="This image provides a Docker container for the Monocle Gateway service based on Alpine Linux."
-LABEL vendor="shadeBlue, LLC."
-LABEL version=$BUILD_VERSION
+LABEL org.label-schema.schema-version="1.0"
+LABEL org.label-schema.build-date=$BUILDDATE
+LABEL org.label-schema.name="monoclecam/monocle-gateway"
+LABEL org.label-schema.description="This image provides a Docker container for the Monocle Gateway service based on Alpine Linux."
+LABEL org.label-schema.url="https://monoclecam.com/"
+LABEL org.label-schema.vcs-url="https://github.com/MonocleCam/monocle-gateway-docker"
+LABEL org.label-schema.vendor="shadeBlue, LLC."
+LABEL org.label-schema.version=$BUILDVERSION
+LABEL org.label-schema.architecture=$TARGETARCH
+
+RUN echo "========================================================="
+RUN echo "  BUILDING DOCKER MONOCLE-GATEWAY IMAGE FOR: $TARGETARCH"
+RUN echo "========================================================="
 
 # ---------------------------------------
 # Create Monocle Gateway configuration 
@@ -71,7 +82,7 @@ RUN apk update &&      \
 # Remove the downloaded Monocle Gateway 
 # archive files
 # ---------------------------------------
-RUN wget -c https://files.monoclecam.com/monocle-gateway/linux/monocle-gateway-alpine-x64-$BUILD_VERSION.tar.gz -O monocle-gateway.tar.gz && \
+RUN wget -c https://files.monoclecam.com/monocle-gateway/linux/monocle-gateway-alpine-x64-$BUILDVERSION.tar.gz -O monocle-gateway.tar.gz && \
     cd /usr/local/bin/ && \
     tar xvzf /root/monocle-gateway.tar.gz monocle-gateway && \ 
     tar xvzf /root/monocle-gateway.tar.gz monocle-proxy  && \

@@ -9,8 +9,8 @@
 #                    MONOCLE GATEWAY SERVICE
 # -------------------------------------------------------------------
 #
-#  This script pushes/deploys tagged Docker images to the Docker Hub
-#  image repository for the Monocle Gateway Service.
+#  This script lists the local tagged Docker images available in the
+#  local Docker image repository for the Monocle Gateway Service.
 #
 # -------------------------------------------------------------------
 #        COPYRIGHT SHADEBLUE, LLC @ 2019, ALL RIGHTS RESERVED
@@ -19,12 +19,12 @@
 # *******************************************************************
 
 echo "------------------------------------------------------------"
-echo " MONOCLE GATEWAY :: DEPLOY/PUSH DOCKER IMAGES"
+echo " MONOCLE GATEWAY :: PULL LATEST DOCKER IMAGES"
 echo "------------------------------------------------------------"
+docker pull monoclecam/monocle-gateway:latest
 
-# PUSH MONOCLE GATEWAY DOCKER IMAGES
-echo ">> DEPLOYING MONOCLE GATEWAY IMAGES"
-docker push monoclecam/monocle-gateway
-
-echo ">> DEPLOYMENT/PUSH COMPLETE FOR MONOCLE GATEWAY IMAGES"
+echo "------------------------------------------------------------"
+echo " MONOCLE GATEWAY :: LOCAL DOCKER IMAGES"
+echo "------------------------------------------------------------"
+docker images --filter=reference="monoclecam/monocle-gateway:*"
 echo "------------------------------------------------------------"
